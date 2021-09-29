@@ -68,4 +68,8 @@ public class Restaurant {
         return name;
     }
 
+    public Integer totalOrderCost(List<Item> menuItems) {
+        return null;
+    }
+
 }

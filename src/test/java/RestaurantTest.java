@@ -57,4 +57,25 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void when_an_item_is_added_to_menu_total_menu_cost_should_be_increased_by_price_of_added_item() {
+        int totalCost = restaurant.totalOrderCost(restaurant.getMenu());
+        restaurant.addToMenu("Sizzling brownie",319);
+        assertEquals(totalCost + 319,restaurant.totalOrderCost(restaurant.getMenu()));
+    }
+
+    @Test
+    public void when_an_item_is_removed_from_menu_total_menu_cost_should_be_decreased_by_price_of_removed_item() throws itemNotFoundException {
+        int totalCost = restaurant.totalOrderCost(restaurant.getMenu());
+        restaurant.removeFromMenu("Vegetable lasagne");
+        assertEquals(totalCost - 269,restaurant.totalOrderCost(restaurant.getMenu()));
+    }
+
+    @Test
+    public void when_no_items_in_menu_then_the_order_total_should_be_zero() {
+        int totalCost = restaurant.totalOrderCost(restaurant.getMenu());
+        assertEquals(totalCost,0);
+    }
+
 }
